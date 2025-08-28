@@ -10,7 +10,7 @@ def call(Map configMap){
             REGION = 'us-east-1'
             ACC_ID = '025523569021'
             PROJECT = configMap.get('project')
-            COMPONENT = Map.get('component')
+            COMPONENT = configMap.get('component')
         }
         options {
             timeout(time: 30, unit: 'MINUTES')
@@ -83,7 +83,9 @@ def call(Map configMap){
         post {
             always {
                 echo 'I will always says Hello again!'
-                deleteDir()
+                script {
+                    deleteDir()
+                }
             }
             success {
                 echo 'Hello Success'
